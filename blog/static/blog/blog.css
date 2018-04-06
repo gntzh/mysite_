@@ -1,0 +1,97 @@
+div.z-card {
+  border: solid #f7f7f9;
+  line-height: 1.5;
+  background-color: #fff;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.8em;
+}
+
+div.z-card p.z-card-extra {
+  color: #999999;
+  font-size: 12px;
+  text-align: center;
+}
+
+.z-btn {
+  display: inline-block;
+  padding: 0 20px;
+  font-size: 14px;
+  color: #555;
+  background: #fff;
+  border: 2px solid #555;
+  text-decoration: none;
+  border-radius: 2px;
+  transition-property: background-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+  line-height: 2;
+}
+
+a:hover {
+  text-decoration: solid;
+}
+
+.z-btn:hover {
+  border-color: #222;
+  color: #fff;
+  background: #222;
+}
+
+.z-btn+.z-btn {
+  margin: 0 0 8px 8px;
+}
+
+.z-btn-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #555;
+  border-radius: 1px;
+}
+
+.z-btn-bar+.z-btn-bar {
+  margin-top: 4px;
+}
+
+ul.z-ul {
+  list-style:none;
+  margin:0px;
+}
+
+.widget-tag-cloud ul {
+  padding: 0;
+  margin: 0;
+  margin-right: -10px;
+}
+
+.widget-tag-cloud ul li {
+  list-style-type: none;
+  font-size: 13px;
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 3px 8px;
+  border: 1px solid #ddd;
+}
+
+.widget-tag-cloud ul li a {
+  color: black;
+}
+
+.back-top {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  border: 1px solid #ddd;
+  padding: 5px;
+  border-radius: 3px;
+  background-color: #343a40;
+  opacity: 0.5;
+  color: #fff !important;
+  line-height: 1;
+  z-index: 99;
+}

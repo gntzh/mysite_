@@ -8,7 +8,7 @@ class ChoiceInline(admin.StackedInline):
 
 
 @admin.register(Question)
-class Questiondmin(admin.ModelAdmin):
+class QuestionAdmin(admin.ModelAdmin):
     list_display = (
         'id',
         'question_text',
