@@ -1,0 +1,64 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block title %}博客详情页|{% endblock %}
+{% block nav_blog_active %}active{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'markdown/github-markdown.css' %}">
+<link rel="stylesheet" href="{% static 'markdown/highlight/github.css' %}">
+<style>
+        .markdown-body {
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 45px;
+        }
+     
+        @media (max-width: 767px) {
+            .markdown-body {
+                padding: 15px;
+            }
+        }
+    </style> 
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row no-gutters">
+        <div class="col-0 col-md-3">
+            <div class="z-card">
+                <h4>目录</h4>
+                {{ blog.toc|safe }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-9">
+            <div class="z-card">
+                <h3 class="text-center">{{ blog.title }}</h3>
+                <div class="z-card-extra">
+                    <i class="fa fa-calendar fa-lg"> 发表于{{ blog.created_time|date:"Y-m-d" }} |</i>
+                    <i class="fa fa-folder fa-lg"> 分类:{{ blog.category }} |</i>
+                    <i class="fa fa-user fa-lg"> 作者:{{ blog.author }}</i>
+                </div>
+                <div class="z-card-extra">
+                    <i class="fa fa-calendar fa-lg"> 最近d修改{{ blog.created_time|date:"Y-m-d" }}</i>
+                </div>
+                <div class="markdown-body">{{ blog.content|safe }}</div>
+                <br>
+                <div class="widget widget-tag-cloud " style="padding-top: 2em;">
+                    <ul>
+                        {% for t in blog.tags.all %}
+                        <li>
+                            <a href="#" style="color: #999999;">{{ t.name }}</a>
+                        </li>
+                        {% empty %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

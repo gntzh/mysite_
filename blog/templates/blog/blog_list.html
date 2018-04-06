@@ -5,34 +5,35 @@
 {% block title %}博客|{% endblock %}
 {% block nav_blog_active %}active{% endblock %}
 {% block head %}
-<link rel="stylesheet" type="text/css" href="{% static 'blog/blog.css' %}" />
 {% endblock %}
 
 {% block body %}
-<div class="container">
-    <div class="row">
+<div class="container ">
+    <div class="row no-gutters">
         <!-- 博客列表 -->
         <div class="col-xs-12 col-md-8">
             {% for b in blogs %}
             <div class="z-card">
-                <h3 class="text-center">{{ b.title }}</h3>
+                <h4 class="text-center">{{ b.title }}</h4>
                 <p class="z-card-extra">
                     <i class="fa fa-calendar-o"> 发表于{{ b.created_time|date:"Y-m-d" }} |</i>
-                    <i class="fa fa-folder-o"> 分类:{{ b.category }} |</i>
+                    <i class="fa fa-folder-o"> 分类:{{ b.category|truncatechars:8 }} |</i>
                     <i class="fa fa-user-o"> 作者:{{ b.author }}</i>
                 </p>
-                <p>{{ b.content }}</p>
+                {{ b.content|truncatechars:128 }}
                 <div style="text-align: center;">
-                    <a href="#" class="z-btn">阅读全文 &raquo;</a>
+                    <a href="{% url 'blog:blog_detail' b.pk %}" class="z-btn">阅读全文 &raquo;</a>
                 </div>
             </div>
             {% empty %}
             <h2>--暂无博客!--</h2>
             {% endfor %}
         </div>
-        <div class="col-xs-0 col-md-4 ">
+        <!-- 侧栏 -->
+        <div class="col-0 col-md-4 ">
+            <!-- 分类 -->
             <div class="z-card">
-                <i class="fa fa-folder-open fa-lg"> 分类</i>
+                <i class="fa fa-folder-open "> 分类</i>
                 <ul class="z-ul">
                 {% for c in categories %}
                 <li>
@@ -43,8 +44,9 @@
                 {% endfor %}
                 </ul>
             </div>
+            <!-- 归档 -->
             <div class="z-card">
-                <i class="fa fa-archive fa-lg"> 归档</i>
+                <i class="fa fa-archive "> 归档</i>
                 <ul class="z-ul">
                     {% regroup dates by year as dates_by_year %}
                     {% for mouth in dates_by_year %} 
@@ -57,13 +59,14 @@
                     {% endfor %} 
                 </ul>
             </div>
+            <!-- 标签云 -->
             <div class="z-card">
                     <div class="widget widget-tag-cloud">
-                        <i class="fa fa-tags fa-lg" style="margin-bottom: 0.4em;">标签云</i>
+                        <i class="fa fa-tags" style="margin-bottom: 0.4em;">标签云</i>
                         <ul>
-                            {% for tag in tags %}
+                            {% for t in tags %}
                             <li>
-                                <a href="#">{{ tag.name }}</a>
+                                <a href="#">{{ t.name }}</a>
                             </li>
                             {% empty %}
                             <h3>--暂无标签!--</h3>
